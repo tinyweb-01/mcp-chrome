@@ -1,7 +1,7 @@
 import { stdin, stdout } from 'process';
 import { Server } from './server';
 import { v4 as uuidv4 } from 'uuid';
-import { NativeMessageType } from 'chrome-mcp-shared';
+import { NativeMessageType } from '@tinyweb_dev/chrome-mcp-shared';
 import { TIMEOUTS } from './constant';
 import fileHandler from './file-handler';
 

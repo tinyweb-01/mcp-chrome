@@ -1,4 +1,4 @@
-import { TOOL_NAMES } from 'chrome-mcp-shared';
+import { TOOL_NAMES } from '@tinyweb_dev/chrome-mcp-shared';
 import { handleCallTool } from '@/entrypoints/background/tools';
 import type { Step } from '../types';
 import { locateElement } from '../selector-engine';

@@ -1,0 +1,87 @@
+name: Publish to npm
+
+on:
+  push:
+    tags:
+      # Publish shared package:  git tag shared-v1.0.2 && git push --tags
+      - 'shared-v*'
+      # Publish native-server (mcp-chrome-bridge): git tag bridge-v1.0.30 && git push --tags
+      - 'bridge-v*'
+  workflow_dispatch:
+    inputs:
+      target:
+        description: 'Which package to publish'
+        required: true
+        type: choice
+        options:
+          - shared
+          - bridge
+          - both
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write # for npm provenance
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile=false --ignore-scripts
+
+      - name: Determine targets
+        id: targets
+        run: |
+          SHARED=false
+          BRIDGE=false
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            case "${{ inputs.target }}" in
+              shared) SHARED=true ;;
+              bridge) BRIDGE=true ;;
+              both)   SHARED=true; BRIDGE=true ;;
+            esac
+          else
+            TAG="${GITHUB_REF#refs/tags/}"
+            case "$TAG" in
+              shared-v*) SHARED=true ;;
+              bridge-v*) BRIDGE=true ;;
+            esac
+          fi
+          echo "shared=$SHARED" >> "$GITHUB_OUTPUT"
+          echo "bridge=$BRIDGE" >> "$GITHUB_OUTPUT"
+
+      - name: Build shared
+        if: steps.targets.outputs.shared == 'true' || steps.targets.outputs.bridge == 'true'
+        run: pnpm --filter @tinyweb_dev/chrome-mcp-shared build
+
+      - name: Publish shared (@tinyweb_dev/chrome-mcp-shared)
+        if: steps.targets.outputs.shared == 'true'
+        working-directory: packages/shared
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: pnpm publish --access public --no-git-checks --provenance
+
+      - name: Build native-server
+        if: steps.targets.outputs.bridge == 'true'
+        run: pnpm --filter @tinyweb_dev/mcp-chrome-bridge build
+
+      - name: Publish native-server (@tinyweb_dev/mcp-chrome-bridge)
+        if: steps.targets.outputs.bridge == 'true'
+        working-directory: app/native-server
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: pnpm publish --access public --no-git-checks --provenance

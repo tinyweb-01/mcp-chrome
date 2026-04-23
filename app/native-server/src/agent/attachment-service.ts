@@ -16,7 +16,7 @@ import type {
   AgentAttachment,
   AttachmentMetadata,
   AttachmentProjectStats,
-} from 'chrome-mcp-shared';
+} from '@tinyweb_dev/chrome-mcp-shared';
 import { getAgentDataDir } from './storage';
 
 // ============================================================

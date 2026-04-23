@@ -221,7 +221,11 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue';
-import type { AgentProject, AgentEngineInfo, CodexReasoningEffort } from 'chrome-mcp-shared';
+import type {
+  AgentProject,
+  AgentEngineInfo,
+  CodexReasoningEffort,
+} from '@tinyweb_dev/chrome-mcp-shared';
 import {
   getModelsForCli,
   getDefaultModelForCli,

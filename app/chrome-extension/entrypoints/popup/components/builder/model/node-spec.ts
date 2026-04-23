@@ -1,1 +1,1 @@
-export * from 'chrome-mcp-shared';
+export * from '@tinyweb_dev/chrome-mcp-shared';

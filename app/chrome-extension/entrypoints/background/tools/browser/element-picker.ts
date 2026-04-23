@@ -15,7 +15,7 @@ import {
   type ElementPickerResult,
   type ElementPickerResultItem,
   type PickedElement,
-} from 'chrome-mcp-shared';
+} from '@tinyweb_dev/chrome-mcp-shared';
 
 // ============================================================
 // Types

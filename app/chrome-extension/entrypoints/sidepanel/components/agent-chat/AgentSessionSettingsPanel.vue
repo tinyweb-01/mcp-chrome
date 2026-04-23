@@ -376,7 +376,7 @@ import type {
   AgentSystemPromptConfig,
   CodexReasoningEffort,
   AgentSessionOptionsConfig,
-} from 'chrome-mcp-shared';
+} from '@tinyweb_dev/chrome-mcp-shared';
 import {
   getModelsForCli,
   getCodexReasoningEfforts,

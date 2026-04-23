@@ -1,7 +1,10 @@
 {
-  "name": "chrome-mcp-shared",
-  "version": "1.0.1",
-  "author": "hangye",
+  "name": "@tinyweb_dev/chrome-mcp-shared",
+  "version": "1.0.2",
+  "author": "tinyweb_dev",
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "dist/index.js",
   "module": "./dist/index.mjs",
   "types": "dist/index.d.ts",
