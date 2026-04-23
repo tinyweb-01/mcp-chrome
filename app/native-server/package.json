@@ -5,6 +5,15 @@
   "publishConfig": {
     "access": "public"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tinyweb-01/mcp-chrome.git",
+    "directory": "app/native-server"
+  },
+  "homepage": "https://github.com/tinyweb-01/mcp-chrome#readme",
+  "bugs": {
+    "url": "https://github.com/tinyweb-01/mcp-chrome/issues"
+  },
   "main": "dist/index.js",
   "bin": {
     "mcp-chrome-bridge": "./dist/cli.js",

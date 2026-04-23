@@ -1,14 +1,14 @@
 # Chrome MCP Server 🚀
 
-[![Stars](https://img.shields.io/github/stars/hangwin/mcp-chrome)](https://img.shields.io/github/stars/hangwin/mcp-chrome)
+[![Stars](https://img.shields.io/github/stars/tinyweb-01/mcp-chrome)](https://img.shields.io/github/stars/tinyweb-01/mcp-chrome)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8+-blue.svg)](https://www.typescriptlang.org/)
 [![Chrome Extension](https://img.shields.io/badge/Chrome-Extension-green.svg)](https://developer.chrome.com/docs/extensions/)
-[![Release](https://img.shields.io/github/v/release/hangwin/mcp-chrome.svg)](https://img.shields.io/github/v/release/hangwin/mcp-chrome.svg)
+[![Release](https://img.shields.io/github/v/release/tinyweb-01/mcp-chrome.svg)](https://img.shields.io/github/v/release/tinyweb-01/mcp-chrome.svg)
 
 > 🌟 **Turn your Chrome browser into your intelligent assistant** - Let AI take control of your browser, transforming it into a powerful AI-controlled automation tool.
 
-**📖 Documentation**: [English](README.md) | [中文](README_zh.md)
+**📖 Documentation**: [English](README.md)
 
 > The project is still in its early stages and is under intensive development. More features, stability improvements, and other enhancements will follow.
 
@@ -56,14 +56,14 @@ Chrome MCP Server is a Chrome extension-based **Model Context Protocol (MCP) ser
 
 1. **Download the latest Chrome extension from GitHub**
 
-Download link: https://github.com/hangwin/mcp-chrome/releases
+Download link: https://github.com/tinyweb-01/mcp-chrome/releases
 
-2. **Install mcp-chrome-bridge globally**
+2. **Install @tinyweb_dev/mcp-chrome-bridge globally**
 
 npm
 
 ```bash
-npm install -g mcp-chrome-bridge
+npm install -g @tinyweb_dev/mcp-chrome-bridge
 ```
 
 pnpm
@@ -71,11 +71,11 @@ pnpm
 ```bash
 # Method 1: Enable scripts globally (recommended)
 pnpm config set enable-pre-post-scripts true
-pnpm install -g mcp-chrome-bridge
+pnpm install -g @tinyweb_dev/mcp-chrome-bridge
 
 # Method 2: Manual registration (if postinstall doesn't run)
-pnpm install -g mcp-chrome-bridge
-mcp-chrome-bridge register
+pnpm install -g @tinyweb_dev/mcp-chrome-bridge
+@tinyweb_dev/mcp-chrome-bridge register
 ```
 
 > Note: pnpm v7+ disables postinstall scripts by default for security. The `enable-pre-post-scripts` setting controls whether pre/post install scripts run. If automatic registration fails, use the manual registration command above.
@@ -114,13 +114,13 @@ If your client only supports stdio connection method, please use the following a
 
 ```sh
 # npm check method
-npm list -g mcp-chrome-bridge
+npm list -g @tinyweb_dev/mcp-chrome-bridge
 # pnpm check method
-pnpm list -g mcp-chrome-bridge
+pnpm list -g @tinyweb_dev/mcp-chrome-bridge
 ```
 
 Assuming the command above outputs the path: /Users/xxx/Library/pnpm/global/5
-Then your final path would be: /Users/xxx/Library/pnpm/global/5/node_modules/mcp-chrome-bridge/dist/mcp/mcp-server-stdio.js
+Then your final path would be: /Users/xxx/Library/pnpm/global/5/node_modules/@tinyweb_dev/mcp-chrome-bridge/dist/mcp/mcp-server-stdio.js
 
 2. Replace the configuration below with the final path you just obtained
 
@@ -131,7 +131,7 @@ Then your final path would be: /Users/xxx/Library/pnpm/global/5/node_modules/mcp
       "command": "npx",
       "args": [
         "node",
-        "/Users/xxx/Library/pnpm/global/5/node_modules/mcp-chrome-bridge/dist/mcp/mcp-server-stdio.js"
+        "/Users/xxx/Library/pnpm/global/5/node_modules/@tinyweb_dev/mcp-chrome-bridge/dist/mcp/mcp-server-stdio.js"
       ]
     }
   }
