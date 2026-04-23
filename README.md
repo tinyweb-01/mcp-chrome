@@ -99,7 +99,7 @@ Add the following configuration to your MCP client configuration (using CherrySt
 {
   "mcpServers": {
     "chrome-mcp-server": {
-      "type": "streamableHttp",
+      "type": "streamable-http",
       "url": "http://127.0.0.1:12306/mcp"
     }
   }
